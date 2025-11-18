@@ -72,7 +72,7 @@ def generate_launch_description():
         name='centralized_ekf_node',
         output='screen',                        # Mostra output nel terminale
         parameters=[{
-            'num_robots': 2,                    # Numero di robot nel sistema
+            'num_robots': 3,                    # Numero di robot nel sistema
             'dataset_path': LaunchConfiguration('dataset_path'),
             'print_interval': LaunchConfiguration('print_interval'),
             'use_groundtruth_init': True        # Usa posizioni iniziali da ground truth
@@ -108,7 +108,21 @@ def generate_launch_description():
             'playback_speed': LaunchConfiguration('playback_speed')
         }]
     )
-    
+
+    # Nodo Robot 3 - Pubblica dati del primo robot
+    robot3_node = Node(
+        package='cooperative_localization',
+        executable='robot_node',
+        name='robot_3_node',
+        output='screen',
+        arguments=['3'],                       # ID del robot
+        parameters=[{
+            'dataset_path': LaunchConfiguration('dataset_path'),
+            'playback_speed': LaunchConfiguration('playback_speed')
+        }]
+    )
+
+
     # DESCRIZIONE LAUNCH
     # Combina tutti gli argomenti ed i nodi
     return LaunchDescription([
@@ -117,7 +131,8 @@ def generate_launch_description():
         print_interval_arg,
         centralized_node,  
         robot1_node,       
-        robot2_node        
+        robot2_node,
+        robot3_node
     ])
 
 
