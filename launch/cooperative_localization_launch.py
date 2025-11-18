@@ -109,7 +109,7 @@ def generate_launch_description():
         }]
     )
 
-    # Nodo Robot 3 - Pubblica dati del primo robot
+    # Nodo Robot 3 - Pubblica dati del terzo robot
     robot3_node = Node(
         package='cooperative_localization',
         executable='robot_node',
@@ -157,3 +157,4 @@ def generate_launch_description():
 # - /dataset_status (cooperative_localization/DatasetStatus): Stato completamento dataset
 #
 # Il sistema non pubblica su topic esterni ma stampa lo stato a console
+
